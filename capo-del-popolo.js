@@ -10,8 +10,9 @@ const unlockSite = () => {
   vipGate.setAttribute('aria-hidden', 'true');
   window.sessionStorage.setItem('capoVipAccess', 'granted');
 };
-if (window.sessionStorage.getItem('capoVipAccess') === 'granted' || joinedClub) unlockSite();
+if (window.sessionStorage.getItem('capoVipAccess') === 'granted') unlockSite();
 else window.requestAnimationFrame(() => document.querySelector('#cdp-gate-email').focus());
+if (joinedClub) vipMessage.textContent = 'You’re on the list. Watch your inbox for future access.';
 vipPasswordToggle.addEventListener('click', () => {
   const passwordForm = document.querySelector('#cdp-vip-form');
   const willOpen = passwordForm.hidden;
