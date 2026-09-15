@@ -2,16 +2,29 @@ const vipGate = document.querySelector('#cdp-vip-gate');
 const vipForm = document.querySelector('#cdp-vip-form');
 const vipCode = document.querySelector('#cdp-vip-code');
 const vipMessage = document.querySelector('#cdp-vip-message');
+const vipPasswordToggle = document.querySelector('#cdp-show-password');
+const gateEmailForm = document.querySelector('#cdp-gate-email-form');
+const joinedClub = new URLSearchParams(window.location.search).get('joined') === '1';
 const unlockSite = () => {
   document.body.classList.remove('cdp-locked');
   vipGate.setAttribute('aria-hidden', 'true');
   window.sessionStorage.setItem('capoVipAccess', 'granted');
 };
-if (window.sessionStorage.getItem('capoVipAccess') === 'granted') unlockSite();
-else window.requestAnimationFrame(() => vipCode.focus());
+if (window.sessionStorage.getItem('capoVipAccess') === 'granted' || joinedClub) unlockSite();
+else window.requestAnimationFrame(() => document.querySelector('#cdp-gate-email').focus());
+vipPasswordToggle.addEventListener('click', () => {
+  const passwordForm = document.querySelector('#cdp-vip-form');
+  const willOpen = passwordForm.hidden;
+  passwordForm.hidden = !willOpen;
+  gateEmailForm.hidden = willOpen;
+  vipPasswordToggle.setAttribute('aria-expanded', String(willOpen));
+  vipPasswordToggle.textContent = willOpen ? 'Use email instead' : 'I have a password';
+  if (willOpen) vipCode.focus();
+  else document.querySelector('#cdp-gate-email').focus();
+});
 vipForm.addEventListener('submit', (event) => {
   event.preventDefault();
-  if (vipCode.value === 'CAPOVIP1') {
+  if (vipCode.value.trim().toUpperCase() === 'CAPOVIP1') {
     unlockSite();
     return;
   }
@@ -106,7 +119,7 @@ overlay.addEventListener('click', closeCart);
 checkoutButton.addEventListener('click', () => { closeCart(); document.querySelector('#cdp-checkout-product').innerHTML = cart.map((item) => `<div class="cdp-order-item"><span>${item.name}<small>Size ${item.size}</small></span><span>${money(item.price)}</span></div>`).join(''); document.querySelector('#cdp-checkout-total').textContent = money(total()); checkoutDialog.showModal(); });
 document.querySelector('#cdp-close-checkout').addEventListener('click', () => checkoutDialog.close());
 document.querySelector('#cdp-checkout-form').addEventListener('submit', (event) => { event.preventDefault(); document.querySelector('#cdp-payment-notice').textContent = 'Live payment processing is ready for merchant credentials and a secure server connection.'; });
-if (new URLSearchParams(window.location.search).get('joined') === '1') {
+if (joinedClub) {
   document.querySelector('#cdp-email-message').textContent = 'You’re in. Check your inbox for your welcome email.';
   window.history.replaceState(null, '', `${window.location.pathname}${window.location.hash}`);
 }

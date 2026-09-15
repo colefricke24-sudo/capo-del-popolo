@@ -20,13 +20,23 @@
       <div class="cdp-vip-panel">
         <img src="assets/capo-del-popolo-logo-transparent.png" alt="Capo Del Popolo" />
         <p class="cdp-eyebrow">Private access</p>
-        <h1 id="cdp-vip-title">Enter the<br /><em>movement.</em></h1>
-        <form id="cdp-vip-form">
+        <h1 id="cdp-vip-title">Join the<br /><em>movement.</em></h1>
+        <form id="cdp-gate-email-form" action="https://formsubmit.co/capodelpopolo1@gmail.com" method="POST">
+          <label class="cdp-sr-only" for="cdp-gate-email">Email address</label>
+          <input id="cdp-gate-email" name="email" type="email" autocomplete="email" placeholder="Email address" required />
+          <input type="hidden" name="_subject" value="New Capo Del Popolo Club Signup" />
+          <input type="hidden" name="_autoresponse" value="Welcome to the Capo Del Popolo club. You're officially in. You'll be first to hear about new drops, restocks, and private releases. Choose to lead." />
+          <input type="hidden" name="_next" value="https://capo-del-popolo.vercel.app/?joined=1#capo-top" />
+          <input class="cdp-honeypot" name="_honey" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <button type="submit">Join <span>→</span></button>
+        </form>
+        <button class="cdp-password-toggle" id="cdp-show-password" type="button" aria-expanded="false" aria-controls="cdp-vip-form">I have a password</button>
+        <form id="cdp-vip-form" hidden>
           <label class="cdp-sr-only" for="cdp-vip-code">VIP passcode</label>
           <input id="cdp-vip-code" type="password" placeholder="Enter passcode" autocomplete="off" required />
           <button type="submit">Enter <span>→</span></button>
         </form>
-        <p class="cdp-vip-message" id="cdp-vip-message" aria-live="polite">Access is reserved for Capo VIPs.</p>
+        <p class="cdp-vip-message" id="cdp-vip-message" aria-live="polite">Join the club or enter with your VIP password.</p>
       </div>
     </section>
     <div class="cdp-announcement">CAPO DEL POPOLO <span>•</span> ITALIAN-AMERICAN STREETWEAR <span>•</span> CHOOSE TO LEAD</div>

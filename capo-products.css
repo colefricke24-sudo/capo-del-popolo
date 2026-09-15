@@ -79,10 +79,15 @@ body.cdp-locked { overflow: hidden; }
 .cdp-vip-panel .cdp-eyebrow { color: #d7d3bd; }
 .cdp-vip-panel h1 { margin: 18px 0 36px; font: 500 clamp(48px, 7vw, 76px)/.95 "Playfair Display", serif; letter-spacing: -.06em; }
 .cdp-vip-panel form { display: flex; border-bottom: 1px solid rgba(250,245,234,.62); }
+.cdp-vip-panel form[hidden] { display: none; }
 .cdp-vip-panel input { flex: 1; min-width: 0; padding: 16px 4px; border: 0; outline: 0; background: transparent; color: #fff; font-size: 16px; letter-spacing: .08em; }
 .cdp-vip-panel input::placeholder { color: rgba(250,245,234,.58); letter-spacing: 0; }
 .cdp-vip-panel button { border: 0; background: transparent; color: #fff; font: 12px var(--cdp-mono); text-transform: uppercase; letter-spacing: .1em; }
 .cdp-vip-panel button span { margin-left: 10px; font-size: 18px; }
+.cdp-vip-panel .cdp-honeypot { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.cdp-vip-panel .cdp-password-toggle { margin: 20px auto; padding: 5px 0; border-bottom: 1px solid rgba(250,245,234,.55); font-size: 10px; text-transform: none; }
+.cdp-vip-panel .cdp-password-toggle:hover,
+.cdp-vip-panel .cdp-password-toggle:focus-visible { border-color: #fff; outline: none; }
 .cdp-vip-message { min-height: 1.5em; margin: 15px 0 0; color: #d7d3bd; font-size: 11px; }
 .cdp-vip-panel form.error { border-color: #e16b5f; }
 .cdp-vip-panel form.error + .cdp-vip-message { color: #ffb6ad; }
