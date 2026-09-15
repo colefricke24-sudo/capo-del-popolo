@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://media-photos.depop.com https://media-assets.grailed.com; frame-src https://www.instagram.com; connect-src 'self'; upgrade-insecure-requests" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://media-photos.depop.com https://media-assets.grailed.com; frame-src https://www.instagram.com; connect-src 'self' https://formsubmit.co; upgrade-insecure-requests" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="description" content="Capo Del Popolo — Italian-American streetwear. Choose to lead." />
     <meta property="og:title" content="Capo Del Popolo — Choose to Lead" />
@@ -47,14 +47,23 @@
       <section class="cdp-collection" id="capo-collection">
         <div class="cdp-section-top"><div><p class="cdp-eyebrow">Drop 001</p><h2>The first<br /><em>collection.</em></h2></div><p>Limited first run<br />Unisex fit</p></div>
         <div class="cdp-catalog-grid">
-          <button class="cdp-product-tile" data-product="hoodie" aria-label="View Camo and Grey Zip Hoodie details"><img src="assets/capo-camo-zip-hoodie-front.webp" alt="Capo Del Popolo Camo and Grey Zip Hoodie" /></button>
-          <button class="cdp-product-tile" data-product="white-tee" aria-label="View Lucent White Signature Tee details"><img src="assets/capo-signature-tee-white.png" alt="Capo Del Popolo Signature Tee in Lucent White" /></button>
-          <button class="cdp-product-tile" data-product="apricot-tee" aria-label="View Gray Apricot Signature Tee details"><img src="assets/capo-signature-tee-gray-apricot.png" alt="Capo Del Popolo Signature Tee in Gray Apricot" /></button>
+          <article class="cdp-product-card">
+            <button class="cdp-product-tile" data-product="hoodie" aria-label="View Camo and Grey Zip Hoodie details"><img src="assets/capo-camo-zip-hoodie-front.webp" alt="Capo Del Popolo Camo and Grey Zip Hoodie" /></button>
+            <button class="cdp-product-open" data-product="hoodie"><span>Camo / Grey Zip Hoodie</span><small>$88.00 USD</small></button>
+          </article>
+          <article class="cdp-product-card">
+            <button class="cdp-product-tile" data-product="white-tee" aria-label="View Lucent White Signature Tee details"><img src="assets/capo-signature-tee-white.png" alt="Capo Del Popolo Signature Tee in Lucent White" /></button>
+            <button class="cdp-product-open" data-product="white-tee"><span>Signature Tee — Lucent White</span><small>$35.00 USD</small></button>
+          </article>
+          <article class="cdp-product-card">
+            <button class="cdp-product-tile" data-product="apricot-tee" aria-label="View Gray Apricot Signature Tee details"><img src="assets/capo-signature-tee-gray-apricot.png" alt="Capo Del Popolo Signature Tee in Gray Apricot" /></button>
+            <button class="cdp-product-open" data-product="apricot-tee"><span>Signature Tee — Gray Apricot</span><small>$35.00 USD</small></button>
+          </article>
         </div>
       </section>
 
       <section class="cdp-manifesto"><p class="cdp-eyebrow">CAPO DEL POPOLO</p><blockquote>People make the culture.<br /><em>Choose to lead it.</em></blockquote><div class="cdp-tricolore"><span></span><span></span><span></span></div></section>
-      <section class="cdp-mailing"><p class="cdp-eyebrow">Enter the family</p><h2>First to<br /><em>know.</em></h2><form id="cdp-email-form"><label class="cdp-sr-only" for="cdp-email">Email address</label><input id="cdp-email" type="email" placeholder="Your email address" required /><button type="submit">Join <span>→</span></button></form><p id="cdp-email-message">Drop news, delivered occasionally.</p></section>
+      <section class="cdp-mailing"><p class="cdp-eyebrow">Join the club</p><h2>First to<br /><em>know.</em></h2><form id="cdp-email-form"><label class="cdp-sr-only" for="cdp-email">Email address</label><input id="cdp-email" name="email" type="email" autocomplete="email" placeholder="Your email address" required /><input class="cdp-honeypot" name="_honey" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" /><button type="submit">Join <span>→</span></button></form><p id="cdp-email-message" aria-live="polite">Drop news, delivered occasionally. Unsubscribe anytime.</p></section>
     </main>
 
     <footer class="cdp-footer"><img src="assets/capo-del-popolo-logo-transparent.png" alt="Capo Del Popolo" /><div><a href="#capo-collection">Shop</a><a href="mailto:capodelpopolo1@gmail.com">capodelpopolo1@gmail.com</a></div><p>© 2026 Capo Del Popolo.<br />New York • Italia</p></footer>

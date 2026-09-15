@@ -1,8 +1,10 @@
 .cdp-catalog-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(18px, 2.2vw, 32px);
+  gap: clamp(24px, 3vw, 48px) clamp(14px, 2vw, 30px);
 }
+
+.cdp-product-card { min-width: 0; }
 
 .cdp-product-tile {
   display: block;
@@ -10,15 +12,32 @@
   aspect-ratio: 1;
   overflow: hidden;
   padding: 0;
-  border: 1px solid transparent;
-  background: #f1f1ef;
-  transition: transform .25s ease, border-color .25s ease;
+  border: 0;
+  background: #f3f3f1;
 }
 
 .cdp-product-tile:hover,
-.cdp-product-tile:focus-visible { transform: translateY(-5px); border-color: var(--cdp-ink); outline: none; }
-.cdp-product-tile img { display: block; width: 100%; height: 100%; object-fit: contain; transition: transform .35s ease; }
-.cdp-product-tile:hover img { transform: scale(1.025); }
+.cdp-product-tile:focus-visible { outline: 1px solid var(--cdp-ink); outline-offset: 3px; }
+.cdp-product-tile img { display: block; width: 100%; height: 100%; object-fit: contain; transition: opacity .25s ease; }
+.cdp-product-tile:hover img { opacity: .88; }
+.cdp-product-open {
+  width: 100%;
+  padding: 13px 0 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  text-transform: uppercase;
+}
+.cdp-product-open span,
+.cdp-product-open small { display: block; font: 9px/1.45 var(--cdp-mono); letter-spacing: .055em; }
+.cdp-product-open small { margin-top: 4px; color: #65655e; letter-spacing: .025em; }
+.cdp-product-open:hover span { text-decoration: underline; text-underline-offset: 3px; }
+.cdp-product-open:focus-visible { outline: 1px solid var(--cdp-ink); outline-offset: 4px; }
+
+.cdp-mailing .cdp-honeypot { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.cdp-mailing button:disabled { cursor: wait; opacity: .48; }
+.cdp-mailing > p.cdp-email-error { color: #8b241b; }
 
 .cdp-product-dialog {
   width: min(980px, calc(100% - 32px));
@@ -74,7 +93,9 @@ body.cdp-locked { overflow: hidden; }
 }
 
 @media (max-width: 620px) {
-  .cdp-catalog-grid { grid-template-columns: 1fr; gap: 22px; }
+  .cdp-catalog-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px 10px; }
+  .cdp-product-open span,
+  .cdp-product-open small { font-size: 8px; }
   .cdp-product-modal { grid-template-columns: 1fr; }
   .cdp-product-visual { min-height: 0; aspect-ratio: 1; }
   .cdp-product-copy { padding: 34px 22px 24px; }

@@ -81,7 +81,7 @@ function showProduct(key) {
   document.querySelectorAll('#cdp-detail-views button').forEach((button) => button.classList.toggle('active', button.dataset.view === 'front'));
   productDialog.showModal();
 }
-document.querySelectorAll('.cdp-product-tile').forEach((button) => button.addEventListener('click', () => showProduct(button.dataset.product)));
+document.querySelectorAll('.cdp-product-tile, .cdp-product-open').forEach((button) => button.addEventListener('click', () => showProduct(button.dataset.product)));
 document.querySelector('#cdp-close-product').addEventListener('click', () => productDialog.close());
 document.querySelectorAll('#cdp-detail-views button').forEach((button) => button.addEventListener('click', () => {
   detailImage.src = activeProduct.images[button.dataset.view];
@@ -106,5 +106,34 @@ overlay.addEventListener('click', closeCart);
 checkoutButton.addEventListener('click', () => { closeCart(); document.querySelector('#cdp-checkout-product').innerHTML = cart.map((item) => `<div class="cdp-order-item"><span>${item.name}<small>Size ${item.size}</small></span><span>${money(item.price)}</span></div>`).join(''); document.querySelector('#cdp-checkout-total').textContent = money(total()); checkoutDialog.showModal(); });
 document.querySelector('#cdp-close-checkout').addEventListener('click', () => checkoutDialog.close());
 document.querySelector('#cdp-checkout-form').addEventListener('submit', (event) => { event.preventDefault(); document.querySelector('#cdp-payment-notice').textContent = 'Live payment processing is ready for merchant credentials and a secure server connection.'; });
-document.querySelector('#cdp-email-form').addEventListener('submit', (event) => { event.preventDefault(); document.querySelector('#cdp-email').value = ''; document.querySelector('#cdp-email-message').textContent = 'Welcome to the family.'; });
+document.querySelector('#cdp-email-form').addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const button = form.querySelector('button');
+  const message = document.querySelector('#cdp-email-message');
+  if (form.elements._honey.value) return;
+  button.disabled = true;
+  button.firstChild.textContent = 'Joining ';
+  message.classList.remove('cdp-email-error');
+  try {
+    const response = await fetch('https://formsubmit.co/ajax/capodelpopolo1@gmail.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        email: form.elements.email.value,
+        _subject: 'New Capo Del Popolo Club Signup',
+        source: 'capo-del-popolo.vercel.app'
+      })
+    });
+    if (!response.ok) throw new Error('Signup request failed');
+    form.reset();
+    message.textContent = 'You’re in. Welcome to the club.';
+  } catch {
+    message.textContent = 'We couldn’t add you right now. Please try again.';
+    message.classList.add('cdp-email-error');
+  } finally {
+    button.disabled = false;
+    button.firstChild.textContent = 'Join ';
+  }
+});
 renderCart();
