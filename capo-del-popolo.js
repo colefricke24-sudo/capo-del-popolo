@@ -4,6 +4,7 @@ const vipCode = document.querySelector('#cdp-vip-code');
 const vipMessage = document.querySelector('#cdp-vip-message');
 const vipPasswordToggle = document.querySelector('#cdp-show-password');
 const gateEmailForm = document.querySelector('#cdp-gate-email-form');
+const footerEmailForm = document.querySelector('#cdp-email-form');
 const joinedClub = new URLSearchParams(window.location.search).get('joined') === '1';
 const unlockSite = () => {
   document.body.classList.remove('cdp-locked');
@@ -33,6 +34,21 @@ vipForm.addEventListener('submit', (event) => {
   vipMessage.textContent = 'That passcode is not recognized.';
   vipCode.value = '';
   vipCode.focus();
+});
+gateEmailForm.addEventListener('submit', () => {
+  vipMessage.textContent = 'Adding you to the club…';
+  window.setTimeout(() => {
+    vipMessage.textContent = 'You’re on the list. The storefront still requires the password.';
+    gateEmailForm.reset();
+  }, 900);
+});
+footerEmailForm.addEventListener('submit', () => {
+  const footerEmailMessage = document.querySelector('#cdp-email-message');
+  footerEmailMessage.textContent = 'Adding you to the club…';
+  window.setTimeout(() => {
+    footerEmailMessage.textContent = 'You’re on the list. Watch your inbox for Capo updates.';
+    footerEmailForm.reset();
+  }, 900);
 });
 
 const productCatalog = {
