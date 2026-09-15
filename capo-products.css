@@ -1,60 +1,82 @@
 .cdp-catalog-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(14px, 2vw, 26px);
-  align-items: stretch;
+  gap: clamp(18px, 2.2vw, 32px);
 }
 
-.cdp-catalog-card {
-  display: flex;
-  min-width: 0;
-  flex-direction: column;
-}
-
-.cdp-catalog-card .cdp-gallery,
-.cdp-catalog-card .cdp-purchase { width: 100%; }
-
-.cdp-catalog-card .cdp-gallery-main,
-.cdp-tee-image {
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-  aspect-ratio: 1;
-  background: #f1f1ef;
-}
-
-.cdp-catalog-card .cdp-gallery-main img,
-.cdp-tee-image img {
+.cdp-product-tile {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: contain;
+  aspect-ratio: 1;
+  overflow: hidden;
+  padding: 0;
+  border: 1px solid transparent;
+  background: #f1f1ef;
+  transition: transform .25s ease, border-color .25s ease;
 }
 
-.cdp-catalog-card .cdp-gallery-controls { margin-top: 8px; }
-.cdp-catalog-card .cdp-purchase { display: flex; flex: 1; flex-direction: column; padding-top: 12px; }
+.cdp-product-tile:hover,
+.cdp-product-tile:focus-visible { transform: translateY(-5px); border-color: var(--cdp-ink); outline: none; }
+.cdp-product-tile img { display: block; width: 100%; height: 100%; object-fit: contain; transition: transform .35s ease; }
+.cdp-product-tile:hover img { transform: scale(1.025); }
 
-.cdp-tee-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: start;
-  padding: 20px 0;
+.cdp-product-dialog {
+  width: min(980px, calc(100% - 32px));
+  max-height: calc(100% - 32px);
+  padding: 0;
+  border: 0;
+  background: #fbf9f4;
+  color: var(--cdp-ink);
 }
+.cdp-product-dialog::backdrop { background: rgba(0,0,0,.55); }
+.cdp-product-modal { position: relative; display: grid; grid-template-columns: 1.1fr .9fr; }
+.cdp-product-close { position: absolute; z-index: 2; top: 16px; right: 18px; padding: 5px; border: 0; background: transparent; font: 31px/1 Arial; }
+.cdp-product-visual { position: relative; min-height: 560px; display: grid; place-items: center; background: #f1f1ef; }
+.cdp-product-visual > img { display: block; width: 100%; height: 100%; max-height: 680px; object-fit: contain; }
+.cdp-detail-views { position: absolute; left: 18px; bottom: 18px; display: flex; gap: 8px; }
+.cdp-detail-views[hidden] { display: none; }
+.cdp-detail-views button { padding: 9px 15px; border: 1px solid var(--cdp-line); background: #fbf9f4; font: 10px var(--cdp-mono); text-transform: uppercase; }
+.cdp-detail-views button.active { background: var(--cdp-ink); color: #fff; }
+.cdp-product-copy { display: flex; flex-direction: column; justify-content: center; padding: clamp(36px, 5vw, 72px); }
+.cdp-product-copy h2 { margin: 12px 0 18px; font: 500 clamp(42px, 4.5vw, 68px)/.95 "Playfair Display", serif; letter-spacing: -.055em; }
+.cdp-product-copy .cdp-price { margin-bottom: 24px; }
+.cdp-product-copy .cdp-description { max-width: none; }
 
-.cdp-tee-info .cdp-eyebrow { margin-bottom: 8px; }
-.cdp-tee-info h3 { margin: 0; font: 500 1.65rem/1 "Playfair Display", serif; }
-.cdp-tee-info strong { font: 500 14px var(--cdp-mono); }
-.cdp-catalog-card .cdp-size-picker { margin-top: auto; }
-.cdp-catalog-card .cdp-add-button { margin-top: 2px; }
-.cdp-catalog-card .cdp-description { min-height: 5.2em; }
+body.cdp-locked { overflow: hidden; }
+.cdp-vip-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: var(--cdp-olive);
+  color: #faf5ea;
+  transition: opacity .35s ease, visibility .35s ease;
+}
+.cdp-vip-gate[aria-hidden="true"] { opacity: 0; visibility: hidden; pointer-events: none; }
+.cdp-vip-panel { width: min(540px, 100%); text-align: center; }
+.cdp-vip-panel > img { width: min(360px, 88%); margin: 0 auto 42px; display: block; }
+.cdp-vip-panel .cdp-eyebrow { color: #d7d3bd; }
+.cdp-vip-panel h1 { margin: 18px 0 36px; font: 500 clamp(48px, 7vw, 76px)/.95 "Playfair Display", serif; letter-spacing: -.06em; }
+.cdp-vip-panel form { display: flex; border-bottom: 1px solid rgba(250,245,234,.62); }
+.cdp-vip-panel input { flex: 1; min-width: 0; padding: 16px 4px; border: 0; outline: 0; background: transparent; color: #fff; font-size: 16px; letter-spacing: .08em; }
+.cdp-vip-panel input::placeholder { color: rgba(250,245,234,.58); letter-spacing: 0; }
+.cdp-vip-panel button { border: 0; background: transparent; color: #fff; font: 12px var(--cdp-mono); text-transform: uppercase; letter-spacing: .1em; }
+.cdp-vip-panel button span { margin-left: 10px; font-size: 18px; }
+.cdp-vip-message { min-height: 1.5em; margin: 15px 0 0; color: #d7d3bd; font-size: 11px; }
+.cdp-vip-panel form.error { border-color: #e16b5f; }
+.cdp-vip-panel form.error + .cdp-vip-message { color: #ffb6ad; }
 
 @media (max-width: 900px) {
   .cdp-catalog-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cdp-product-modal { grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 620px) {
-  .cdp-catalog-grid { grid-template-columns: 1fr; gap: 34px; }
-  .cdp-tee-image { aspect-ratio: 1 / 1.08; }
-  .cdp-tee-info h3 { font-size: 1.5rem; }
-  .cdp-catalog-card .cdp-description { min-height: 0; }
+  .cdp-catalog-grid { grid-template-columns: 1fr; gap: 22px; }
+  .cdp-product-modal { grid-template-columns: 1fr; }
+  .cdp-product-visual { min-height: 0; aspect-ratio: 1; }
+  .cdp-product-copy { padding: 34px 22px 24px; }
+  .cdp-product-copy h2 { font-size: 46px; }
 }
