@@ -1,0 +1,60 @@
+.cdp-catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(14px, 2vw, 26px);
+  align-items: stretch;
+}
+
+.cdp-catalog-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.cdp-catalog-card .cdp-gallery,
+.cdp-catalog-card .cdp-purchase { width: 100%; }
+
+.cdp-catalog-card .cdp-gallery-main,
+.cdp-tee-image {
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  aspect-ratio: 1;
+  background: #f1f1ef;
+}
+
+.cdp-catalog-card .cdp-gallery-main img,
+.cdp-tee-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.cdp-catalog-card .cdp-gallery-controls { margin-top: 8px; }
+.cdp-catalog-card .cdp-purchase { display: flex; flex: 1; flex-direction: column; padding-top: 12px; }
+
+.cdp-tee-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  padding: 20px 0;
+}
+
+.cdp-tee-info .cdp-eyebrow { margin-bottom: 8px; }
+.cdp-tee-info h3 { margin: 0; font: 500 1.65rem/1 "Playfair Display", serif; }
+.cdp-tee-info strong { font: 500 14px var(--cdp-mono); }
+.cdp-catalog-card .cdp-size-picker { margin-top: auto; }
+.cdp-catalog-card .cdp-add-button { margin-top: 2px; }
+.cdp-catalog-card .cdp-description { min-height: 5.2em; }
+
+@media (max-width: 900px) {
+  .cdp-catalog-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 620px) {
+  .cdp-catalog-grid { grid-template-columns: 1fr; gap: 34px; }
+  .cdp-tee-image { aspect-ratio: 1 / 1.08; }
+  .cdp-tee-info h3 { font-size: 1.5rem; }
+  .cdp-catalog-card .cdp-description { min-height: 0; }
+}
