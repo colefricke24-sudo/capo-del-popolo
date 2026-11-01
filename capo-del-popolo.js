@@ -52,16 +52,6 @@ footerEmailForm.addEventListener('submit', () => {
 });
 
 const productCatalog = {
-  hoodie: {
-    name: 'Camo / Grey Zip Hoodie',
-    color: 'Camo / Grey',
-    price: 88,
-    description: 'A heavyweight full-zip hoodie in heather grey with camo sleeves, hood, and pocket detail. Finished with the Capo Del Popolo mark.',
-    images: {
-      front: new URL('./assets/capo-camo-zip-hoodie-front.webp', import.meta.url).href,
-      back: new URL('./assets/capo-camo-zip-hoodie-back.webp', import.meta.url).href
-    }
-  },
   'white-tee': {
     name: 'Signature Tee', color: 'Lucent White', price: 35,
     description: 'A clean everyday tee with the Capo Del Popolo signature mark across the chest.',
